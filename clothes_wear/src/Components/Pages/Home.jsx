@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Footer from '../Routes/Footer';
 import Product from './Product';
 
 const categoryImages = {
@@ -10,10 +11,10 @@ const categoryImages = {
 
 const Home = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen flex flex-col">
       {/* Hero Banner  */}
       <div className="relative h-[60vh] md:h-[70vh] w-full">
-        <div className="absolute inset-0 bg-black/40 z-10"></div>
+        <div className="absolute inset-0 bg-[#1a1a1a]/40 z-10"></div>
         <img
           src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
           alt="Fashion Banner"
@@ -28,7 +29,7 @@ const Home = () => {
           </p>
           <Link
             to="/products"
-            className="bg-white text-black px-8 py-3 rounded-full text-lg font-semibold hover:bg-gray-100 transition-colors"
+            className="bg-[#1a1a1a] text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-[#333333] transition-colors"
           >
             Shop Now
           </Link>
@@ -37,32 +38,33 @@ const Home = () => {
 
       {/*  Products Section */}
       <div className="max-w-7xl mx-auto px-4 py-16">
-        <h2 className="text-3xl font-bold text-center mb-12">Featured Products</h2>
+        <h2 className="text-3xl font-bold text-center mb-12 text-[#1a1a1a]">Featured Products</h2>
         <hr className="w-full border-t border-gray-200 mb-12" />
         <Product 
           limit={8} 
           showFilters={true} 
           showPagination={false}
           showTitle={false}
+          showFooter={false}
         />
       </div>
 
       {/* Categories  */}
       <div className="bg-gray-50 py-16">
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">Our Categories</h2>
+          <h2 className="text-3xl font-bold text-center mb-12 text-[#1a1a1a]">Our Categories</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {Object.entries(categoryImages).map(([category, imageUrl]) => (
               <div
                 key={category}
-                className="relative h-64 rounded-lg overflow-hidden"
+                className="relative h-64 rounded-lg overflow-hidden group"
               >
                 <img
                   src={imageUrl}
                   alt={category}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                <div className="absolute inset-0 bg-[#1a1a1a]/40 flex items-center justify-center group-hover:bg-[#1a1a1a]/50 transition-colors">
                   <h3 className="text-white text-2xl font-bold capitalize">
                     {category}
                   </h3>
@@ -72,6 +74,9 @@ const Home = () => {
           </div>
         </div>
       </div>
+
+    
+      <Footer />
     </div>
   );
 };
